@@ -79,7 +79,11 @@ const App: () => Node = () => {
           <Button
             title="Show Toast"
             onPress={() => {
-              ToastExample.show('Awesome', ToastExample.SHORT);
+              ToastExample.show('Awesome', ToastExample.SHORT, (errorStr) => {
+                console.log("NativeErrorCallback: " + errorStr);
+              }, (successStr) => {
+                console.log("NativeSuccessCallback: " + successStr);
+              });
             }}
           />
         </View>

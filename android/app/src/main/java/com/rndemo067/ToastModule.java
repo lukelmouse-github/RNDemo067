@@ -5,6 +5,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -39,7 +40,12 @@ public class ToastModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void show(String message, int duration) {
-        Toast.makeText(getReactApplicationContext(), message, duration).show();
+    public void show(String message, int duration, Callback errorCallback, Callback successCallback) {
+        try {
+            Toast.makeText(getReactApplicationContext(), message, duration).show();
+            successCallback.invoke("这是一个successCallback");
+        } catch (Exception e) {
+            errorCallback.invoke("这是一个errorCallback");
+        }
     }
 }
