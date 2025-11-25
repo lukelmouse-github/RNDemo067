@@ -58,6 +58,16 @@ const Section = ({children, title}): Node => {
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
+  React.useEffect(() => {
+    const subscription = ToastExample.addListener((event) => {
+      console.log("收到原生事件:", event);
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
+
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
