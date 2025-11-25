@@ -20,6 +20,7 @@ import {
 } from 'react-native';
 
 import ToastExample from './ToastExample';
+import RCTImageView from './RCTImageView';
 
 import {
   Colors,
@@ -86,6 +87,13 @@ const App: () => Node = () => {
             alignItems: 'center',
             height: 500, // 给个高度让居中效果明显一点，因为外层是 ScrollView
           }}>
+          <RCTImageView
+            style={{ width: 200, height: 200 }}
+            borderRadius={20}
+            resizeMode="cover"
+            // 注意：这里必须传数组，因为你的 Java 代码 setSrc 接收的是 ReadableArray
+            src={[{ uri: 'https://reactnative.dev/img/tiny_logo.png' }]}
+          />
           <Button
             title="Show Toast"
             onPress={() => {
