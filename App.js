@@ -16,7 +16,10 @@ import {
   Text,
   useColorScheme,
   View,
+  Button,
 } from 'react-native';
+
+import ToastExample from './ToastExample';
 
 import {
   Colors,
@@ -65,25 +68,20 @@ const App: () => Node = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 500, // 给个高度让居中效果明显一点，因为外层是 ScrollView
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+          <Button
+            title="Show Toast"
+            onPress={() => {
+              ToastExample.show('Awesome', ToastExample.SHORT);
+            }}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
